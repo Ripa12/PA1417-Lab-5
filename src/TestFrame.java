@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import org.junit.Assert;
 
-public class testFrame {
+public class TestFrame {
 	protected Frame frameObject;
 	private final int MINTHROW = 0;
 	private final int MAXTHROW = 10;
