@@ -13,10 +13,11 @@ public class TestFrame {
 	}
 	
 	/* 
-	 * Test range of values for both throws from frame
+	 * Test range of the values for both throws from frame 
+	 * and the length of the returned array
      */
 	@Test
-	public void testThrowRange() {
+	public void testGetThrows() {
 		int[] tempThrows = frameObject.getThrows();
 		
 		assertTrue("Incorrect number of throws: " + tempThrows.length, tempThrows.length == 2);
@@ -24,7 +25,15 @@ public class TestFrame {
 		assertTrue("2st throw out of range: " + tempThrows[1], Frame.MINTHROW <= tempThrows[1] && tempThrows[1] <= Frame.MAXTHROW);
 	}
 	
-	
+	/* 
+	 * Test the computed score for one single frame
+     */
+	@Test
+	public void testComputeScore() {
+		int[] tempThrows = frameObject.getThrows();
+		
+		assertTrue("Incorrect score computed: " + frameObject.computeScore(), frameObject.computeScore() == (tempThrows[0] + tempThrows[1]));
+	}
 	
 	
 }
