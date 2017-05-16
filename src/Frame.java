@@ -3,8 +3,8 @@ import java.util.Random;
 public class Frame {
 	private int firstThrow;
 	private int secondThrow;
-	private final int MINTHROW = 0;
-	private final int MAXTHROW = 10;
+	public static final int MINTHROW = 0;
+	public static final int MAXTHROW = 10;
 	
 	Frame(){
 		Random rand = new Random();
@@ -14,8 +14,6 @@ public class Frame {
 	}
 	
 	public int[] getThrows(){
-		int[] result = new int[]{firstThrow, secondThrow};
-		
-		return result;
+		return new int[]{firstThrow, secondThrow};
 	}
 }

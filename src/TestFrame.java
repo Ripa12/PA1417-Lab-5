@@ -6,8 +6,6 @@ import org.junit.Assert;
 
 public class TestFrame {
 	protected Frame frameObject;
-	private final int MINTHROW = 0;
-	private final int MAXTHROW = 10;
 	
 	@Before 
 	public void setup() {
@@ -22,8 +20,8 @@ public class TestFrame {
 		int[] tempThrows = frameObject.getThrows();
 		
 		assertTrue("Incorrect number of throws: " + tempThrows.length, tempThrows.length == 2);
-		assertTrue("1st throw out of range: " + tempThrows[0], MINTHROW <= tempThrows[0] && tempThrows[0] <= MAXTHROW);
-		assertTrue("2st throw out of range: " + tempThrows[1], MINTHROW <= tempThrows[1] && tempThrows[1] <= MAXTHROW);
+		assertTrue("1st throw out of range: " + tempThrows[0], Frame.MINTHROW <= tempThrows[0] && tempThrows[0] <= Frame.MAXTHROW);
+		assertTrue("2st throw out of range: " + tempThrows[1], Frame.MINTHROW <= tempThrows[1] && tempThrows[1] <= Frame.MAXTHROW);
 	}
 	
 	
