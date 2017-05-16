@@ -13,6 +13,11 @@ public class Frame {
 	    secondThrow = rand.nextInt((MAXTHROW - MINTHROW) + 1) + MINTHROW;
 	}
 	
+	Frame(int first, int second){
+		firstThrow = first;
+		secondThrow = second;
+	}
+	
 	public int[] getThrows(){
 		return new int[]{firstThrow, secondThrow};
 	}

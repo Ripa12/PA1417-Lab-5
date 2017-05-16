@@ -6,10 +6,14 @@ import org.junit.Assert;
 
 public class TestFrame {
 	protected Frame frameObject;
+	protected Frame frameZeroScore;
+	protected Frame frameFullScore;
 	
 	@Before 
 	public void setup() {
 		frameObject = new Frame();
+		frameZeroScore = new Frame(0, 0);
+		frameFullScore  = new Frame(10, 10);
 	}
 	
 	/* 
@@ -35,5 +39,22 @@ public class TestFrame {
 		assertTrue("Incorrect score computed: " + frameObject.computeScore(), frameObject.computeScore() == (tempThrows[0] + tempThrows[1]));
 	}
 	
+	/* 
+	 * Test the computed score for one single frame
+	 * where both throws miss every pin
+     */
+	@Test
+	public void testComputeScoreZeroPoints() {
+		assertTrue("Incorrect score computed: " + frameZeroScore.computeScore(), frameZeroScore.computeScore() == (0));
+	}
+	
+	/* 
+	 * Test the computed score for one single frame
+	 * where both throws hit every pin
+     */
+	@Test
+	public void testComputeScoreFullPoints() {
+		assertTrue("Incorrect score computed: " + frameFullScore.computeScore(), frameFullScore.computeScore() == (20));
+	}
 	
 }
