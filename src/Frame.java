@@ -17,11 +17,7 @@ public class Frame {
 		return new int[]{firstThrow, secondThrow};
 	}
 	
-	public int computeScore(){
-		int result = 0;
-			
-		result = firstThrow + secondThrow;
-		
-		return result;
+	public int computeScore(){	
+		return firstThrow + secondThrow;
 	}
 }
