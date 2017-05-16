@@ -9,6 +9,12 @@ public class TestRunner{
     	for (Failure failure : result.getFailures()) {
     		System.out.println(failure.toString());
     	}
+    	
+    	result = JUnitCore.runClasses(TestGame.class);
+
+    	for (Failure failure : result.getFailures()) {
+    		System.out.println(failure.toString());
+    	}
 		
 	}
 }
