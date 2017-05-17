@@ -4,11 +4,13 @@ public class Frame {
 	private Frame nextFrame;
 	private int firstThrow;
 	private int secondThrow;
+	private int firstBonusThrow;
 	public static final int MINTHROW = 0;
 	public static final int MAXTHROW = 10;
 	
 	Frame(Frame next){
 		nextFrame = next;
+		firstBonusThrow = 0;
 		
 		Random rand = new Random();
 
@@ -22,6 +24,18 @@ public class Frame {
 	
 	Frame(int first, int second, Frame next){
 		nextFrame = next;
+		firstBonusThrow = 0;
+		
+		firstThrow = first;
+		if(firstThrow < 10)
+			secondThrow = second;
+		else
+	    	secondThrow = 0;
+	}
+	
+	Frame(int first, int second, int firstBonus){
+		nextFrame = null;
+		firstBonusThrow = firstBonus;
 		
 		firstThrow = first;
 		if(firstThrow < 10)
@@ -51,6 +65,18 @@ public class Frame {
 		return result;
 	}
 	
+	private int computeBonusThrow(){
+		int result = 0;
+		
+		if(nextFrame == null){
+			if((firstThrow + secondThrow) == 10){
+				result += firstBonusThrow;
+			}
+		}
+		
+		return result;
+	}
+	
 	public int computeScore(){
 		int result = firstThrow;
 		if(firstThrow == 10){
@@ -67,6 +93,8 @@ public class Frame {
 				result += ((nextFrame != null) ? nextFrame.getThrows()[0] : 0);
 			}
 		}
+		
+		result += computeBonusThrow();
 		
 		return result;
 	}
