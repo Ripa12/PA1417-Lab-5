@@ -15,6 +15,7 @@ public class TestGame {
 	protected Game gameStrikeAndSpare;
 	protected Game gameConsecutiveStrikes;
 	protected Game gameConsecutiveSpares;
+	protected Game gameSpareLast;
 	
 	@Before 
 	public void setup() {
@@ -41,6 +42,8 @@ public class TestGame {
 				{4, 5}, {10, 8}, {10, 3}});
 		gameConsecutiveSpares = new Game(new int[][]{{8, 2}, {5, 5}, {7, 2}, {3, 6}, 
 				{4, 4}, {5, 3}, {3, 3}, {4, 5}, {8, 1} ,{2, 6}});
+		gameSpareLast = new Game(new int[][]{{1, 5}, {3, 6}, {7, 2}, {3, 6}, {4, 4},
+				{5, 3}, {3, 3}, {4, 5}, {8, 1}, {2, 8, 7}});
 	}
 	
 	/* 
@@ -127,5 +130,15 @@ public class TestGame {
 		int gameScore = gameConsecutiveSpares.computeScore();
 						
 		assertTrue("Incorrect game score: " + gameScore, gameScore == 98);
+	}
+	
+	/* 
+	 * Test scoring of game where the last frame is a spare
+     */
+	@Test
+	public void testFinalFrameIsSpareScoring() {
+		int gameScore = gameSpareLast.computeScore();
+						
+		assertTrue("Incorrect game score: " + gameScore, gameScore == (83 + 7));
 	}
 }

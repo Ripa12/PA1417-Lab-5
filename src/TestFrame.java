@@ -30,7 +30,7 @@ public class TestFrame {
 		frameStrikeBeforeSpare = new Frame(10, 5, new Frame(2, 8, null));
 		
 		frameSpare = new Frame(2, 8, frameNinePoints);
-		frameSpareAndNull = new Frame(2, 8, null);
+		frameSpareAndNull = new Frame(2, 8, 7);
 		frameSecondSpare = new Frame(0, 10, frameNinePoints);
 	}
 	
@@ -113,14 +113,12 @@ public class TestFrame {
 	}
 	
 	/* 
-	 * Test computeScore with null as argument
+	 * Test scoring for spare that is the last spare in the game
      */
 	@Test
-	public void testNullScore() {
+	public void testFinalSpareScore() {
 		int score = frameSpareAndNull.computeScore();
-		assertTrue("Score for spare is not correct: " + score, score == (10));
-		score = frameStrikeAndNull.computeScore();
-		assertTrue("Score for strike is not correct: " + score, score == (10));
+		assertTrue("Score for spare is not correct: " + score, score == (10 + 7));
 	}
 	
 	/* 
