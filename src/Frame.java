@@ -36,12 +36,12 @@ public class Frame {
 	public int computeScore(Frame subsequentFrame){
 		int result = firstThrow;
 		if(firstThrow == 10){
-			result += subsequentFrame.computeScore();
+			result += ((subsequentFrame != null) ? subsequentFrame.computeScore() : 0);
 		}
 		else{
 			result += secondThrow;
 			if(result == 10){
-				result += subsequentFrame.getThrows()[0];
+				result += ((subsequentFrame != null) ? subsequentFrame.getThrows()[0] : 0);
 			}
 		}
 		return result;
