@@ -68,4 +68,13 @@ public class TestFrame {
 		assertTrue("Second throw is not pointless: " + frameStrike.getThrows()[1], frameStrike.getThrows()[1] == (0));
 	}
 	
+	/* 
+	 * Test if score is correctly computed for a strike
+     */
+	@Test
+	public void testStrikeScore() {
+		int score = frameStrike.computeScore(frameTenScore.computeScore());
+		assertTrue("Score for strike is not correct: " + score, score == (20));
+	}
+	
 }
