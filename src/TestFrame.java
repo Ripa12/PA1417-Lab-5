@@ -75,7 +75,7 @@ public class TestFrame {
      */
 	@Test
 	public void testStrikeScore() {
-		int score = frameStrike.computeScore(frameNinePoints.computeScore());
+		int score = frameStrike.computeScore(frameNinePoints);
 		assertTrue("Score for strike is not correct: " + score, score == (19));
 	}
 	

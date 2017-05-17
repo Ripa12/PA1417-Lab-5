@@ -33,7 +33,7 @@ public class Frame {
 		return firstThrow + secondThrow;
 	}
 	
-	public int computeScore(int subsequentScore){
-		return firstThrow + ((firstThrow == 10) ?  subsequentScore : secondThrow);
+	public int computeScore(Frame subsequentFrame){
+		return firstThrow + ((firstThrow == 10) ?  subsequentFrame.computeScore() : secondThrow);
 	}
 }

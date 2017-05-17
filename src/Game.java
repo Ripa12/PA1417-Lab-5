@@ -29,7 +29,7 @@ public class Game {
 		
 		for(int i = 0; i < frames.length; i++){
 			if((i+1) < frames.length) 
-				result += frames[i].computeScore(frames[i+1].computeScore());
+				result += frames[i].computeScore(frames[i+1]);
 			else
 				result += frames[i].computeScore();
 		}
