@@ -10,6 +10,7 @@ import org.junit.Assert;
 public class TestGame {
 	protected Game gameObject;
 	protected Game tenFramesGame;
+	protected Game strikeGame;
 	
 	@Before 
 	public void setup() {
@@ -17,6 +18,11 @@ public class TestGame {
 		tenFramesGame = new Game(new Frame[]{new Frame(1, 5), new Frame(3, 6), new Frame(7, 2),
 				new Frame(3, 6), new Frame(4, 4), new Frame(5, 3), new Frame(3, 3),
 				new Frame(4, 5), new Frame(8, 1), new Frame(2, 6)});
+		
+		strikeGame = new Game(new Frame[]{new Frame(10, 0), new Frame(3, 6), 
+				new Frame(7, 2), new Frame(3, 6), new Frame(4, 4), 
+				new Frame(5, 3), new Frame(3, 3),
+				new Frame(4, 5), new Frame(10, 0), new Frame(2, 6)});
 	}
 	
 	/* 
@@ -52,5 +58,15 @@ public class TestGame {
 		int gameScore = tenFramesGame.computeScore();
 						
 		assertTrue("Incorrect game score: " + gameScore, gameScore == 81);
+	}
+	
+	/* 
+	 * Test score of game where first and last frames are strikes
+     */
+	@Test
+	public void testStrikeScoring() {
+		int gameScore = strikeGame.computeScore();
+						
+		assertTrue("Incorrect game score: " + gameScore, gameScore == 103);
 	}
 }
