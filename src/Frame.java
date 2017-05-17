@@ -38,10 +38,28 @@ public class Frame {
 		return new int[]{firstThrow, secondThrow};
 	}
 	
+	private int computeConsecutiveStrikes(Frame next){
+		int result = 0;
+		
+		if(next != null){
+			if(next.getThrows()[0] == 10){
+				result += computeConsecutiveStrikes(next.next());
+			}
+			result += next.getThrows()[0];
+		}
+		
+		return result;
+	}
+	
 	public int computeScore(){
 		int result = firstThrow;
 		if(firstThrow == 10){
-			result += ((nextFrame != null) ? (nextFrame.getThrows()[0] + nextFrame.getThrows()[1]) : 0);
+			if(nextFrame != null){
+				if(nextFrame.getThrows()[0] == 10)
+					result += computeConsecutiveStrikes(nextFrame);
+				else
+					result += (nextFrame.getThrows()[0] + nextFrame.getThrows()[1]);
+			}
 		}
 		else{
 			result += secondThrow;
