@@ -34,11 +34,6 @@ public class Frame {
 	}
 	
 	public int computeScore(int subsequentScore){
-		int score = firstThrow;
-		if (firstThrow == 10)
-			score += subsequentScore;
-		else
-			score += secondThrow;
-		return score;
+		return firstThrow + ((firstThrow == 10) ?  subsequentScore : secondThrow);
 	}
 }
