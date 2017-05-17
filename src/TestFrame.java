@@ -15,7 +15,7 @@ public class TestFrame {
 		frameObject = new Frame();
 		frameZeroScore = new Frame(0, 0);
 		frameTenScore = new Frame(5, 5);
-		frameStrike = new Frame(10, 0);
+		frameStrike = new Frame(10, 5);
 	}
 	
 	/* 
