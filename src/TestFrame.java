@@ -5,21 +5,33 @@ import java.util.Arrays;
 import org.junit.Assert;
 
 public class TestFrame {
-	protected Frame frameObject;
-	protected Frame frameZeroScore;
-	protected Frame frameNinePoints;
-	protected Frame frameStrike;
-	protected Frame frameSpare;
-	protected Frame frameSecondSpare;
+	private Frame frameObject;
+	private Frame frameZeroScore;
+	private Frame frameNinePoints;
+	
+	private Frame frameStrike;
+	private Frame frameStrikeAndNull;
+	private Frame frameDoubleStrike;
+	private Frame frameStrikeBeforeSpare;
+	
+	private Frame frameSpareAndNull;
+	private Frame frameSpare;
+	private Frame frameSecondSpare;
 	
 	@Before 
 	public void setup() {
-		frameObject = new Frame();
-		frameZeroScore = new Frame(0, 0);
-		frameStrike = new Frame(10, 5);
-		frameNinePoints = new Frame(4, 5);
-		frameSpare = new Frame(2, 8);
-		frameSecondSpare = new Frame(0, 10);
+		frameObject = new Frame(null);
+		frameZeroScore = new Frame(0, 0, null);
+		frameNinePoints = new Frame(4, 5, null);
+		
+		frameStrike = new Frame(10, 5, frameNinePoints);	
+		frameStrikeAndNull = new Frame(10, 5, null);
+		frameDoubleStrike = new Frame(10, 5, frameStrike);	
+		frameStrikeBeforeSpare = new Frame(10, 5, frameSpare);
+		
+		frameSpare = new Frame(2, 8, frameNinePoints);
+		frameSpareAndNull = new Frame(2, 8, null);
+		frameSecondSpare = new Frame(0, 10, frameNinePoints);
 	}
 	
 	/* 
@@ -42,7 +54,7 @@ public class TestFrame {
 	public void testComputeScore() {
 		int[] tempThrows = frameObject.getThrows();
 		
-		assertTrue("Incorrect score computed: " + frameObject.computeScore(frameNinePoints), frameObject.computeScore(frameNinePoints) == (tempThrows[0] + tempThrows[1]));
+		assertTrue("Incorrect score computed: " + frameObject.computeScore(), frameObject.computeScore() == (tempThrows[0] + tempThrows[1]));
 	}
 	
 	/* 
@@ -51,7 +63,7 @@ public class TestFrame {
      */
 	@Test
 	public void testComputeScoreZeroPins() {
-		assertTrue("Incorrect score computed: " + frameZeroScore.computeScore(frameNinePoints), frameZeroScore.computeScore(frameNinePoints) == (0));
+		assertTrue("Incorrect score computed: " + frameZeroScore.computeScore(), frameZeroScore.computeScore() == (0));
 	}
 	
 	/* 
@@ -60,7 +72,7 @@ public class TestFrame {
      */
 	@Test
 	public void testComputeScoreNinePoints() {
-		assertTrue("Incorrect score computed: " + frameNinePoints.computeScore(frameNinePoints), frameNinePoints.computeScore(frameNinePoints) == (9));
+		assertTrue("Incorrect score computed: " + frameNinePoints.computeScore(), frameNinePoints.computeScore() == (9));
 	}
 	
 	/* 
@@ -77,7 +89,7 @@ public class TestFrame {
      */
 	@Test
 	public void testStrikeScore() {
-		int score = frameStrike.computeScore(frameNinePoints);
+		int score = frameStrike.computeScore();
 		assertTrue("Score for strike is not correct: " + score, score == (19));
 	}
 	
@@ -86,7 +98,7 @@ public class TestFrame {
      */
 	@Test
 	public void testSpareScore() {
-		int score = frameSpare.computeScore(frameNinePoints);
+		int score = frameSpare.computeScore();
 		assertTrue("Score for spare is not correct: " + score, score == (14));
 	}
 	
@@ -96,7 +108,7 @@ public class TestFrame {
      */
 	@Test
 	public void testSecondSpareScore() {
-		int score = frameSecondSpare.computeScore(frameNinePoints);
+		int score = frameSecondSpare.computeScore();
 		assertTrue("Score for spare is not correct: " + score, score == (14));
 	}
 	
@@ -105,9 +117,9 @@ public class TestFrame {
      */
 	@Test
 	public void testNullScore() {
-		int score = frameSpare.computeScore(null);
+		int score = frameSpareAndNull.computeScore();
 		assertTrue("Score for spare is not correct: " + score, score == (10));
-		score = frameStrike.computeScore(null);
+		score = frameStrikeAndNull.computeScore();
 		assertTrue("Score for strike is not correct: " + score, score == (10));
 	}
 	
@@ -116,7 +128,7 @@ public class TestFrame {
      */
 	@Test
 	public void testStrikeBeforeSpareScore() {
-		int score = frameStrike.computeScore(frameSpare);
+		int score = frameStrikeBeforeSpare.computeScore();
 		assertTrue("Score for strike is not correct: " + score, score == (20));
 	}
 	
@@ -125,7 +137,7 @@ public class TestFrame {
      */
 	@Test
 	public void testStrikeFollowedByStrikeScore() {
-		int score = frameStrike.computeScore(frameStrike);
+		int score = frameDoubleStrike.computeScore();
 		assertTrue("Score for strike is not correct: " + score, score == (20));
 	}
 	

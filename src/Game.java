@@ -2,23 +2,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-	private Frame[] frames;
+	private Frame firstFrame; 
 	
 	Game(){
-		frames = new Frame[]{new Frame(), new Frame(), new Frame(),
-				new Frame(), new Frame(), new Frame(), new Frame(),
-				new Frame(), new Frame(), new Frame()};
+		firstFrame = new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(null))))))))));
 	}
 	
-	Game(Frame[] f){
-		frames = f;
+	Game(int[][] f){
+		firstFrame = new Frame(f[0][0],f[0][1],new Frame(f[1][0],f[1][1],new Frame(f[2][0],f[2][1],new Frame(f[3][0],f[3][1],new Frame(f[4][0],f[4][1],new Frame(f[5][0],f[5][1],new Frame(f[6][0],f[5][1],new Frame(f[7][0],f[7][1],new Frame(f[8][0],f[8][1],new Frame(f[9][0],f[9][1],null))))))))));
 	}
 	
 	public List<int[]> getAllThrows(){
 		List<int[]> tempResult = new ArrayList<int[]>();
 		
-		for(int i = 0; i < frames.length; i++){
-			tempResult.add(frames[i].getThrows());
+		Frame iter = firstFrame;
+		
+		for(; iter != null; iter = iter.next()){
+			tempResult.add(iter.getThrows());
 		}
 		
 		return tempResult;
@@ -26,12 +26,11 @@ public class Game {
 	
 	public int computeScore(){
 		int result = 0;
+			
+		Frame iter = firstFrame;
 		
-		for(int i = 0; i < frames.length; i++){
-			if((i+1) < frames.length) 
-				result += frames[i].computeScore(frames[i+1]);
-			else
-				result += frames[i].computeScore(null);
+		for(; iter != null; iter = iter.next()){
+			result += iter.computeScore();
 		}
 		
 		return result;

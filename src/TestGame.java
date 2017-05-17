@@ -18,26 +18,26 @@ public class TestGame {
 	@Before 
 	public void setup() {
 		gameObject = new Game();
-		tenFramesGame = new Game(new Frame[]{new Frame(1, 5), new Frame(3, 6), new Frame(7, 2),
-				new Frame(3, 6), new Frame(4, 4), new Frame(5, 3), new Frame(3, 3),
-				new Frame(4, 5), new Frame(8, 1), new Frame(2, 6)});
+		tenFramesGame = new Game(new int[][]{{1, 5}, {3, 6}, {7, 2},
+				{3, 6}, {4, 4}, {5, 3}, {3, 3},
+				{4, 5}, {8, 1}, {2, 6}});
 		
-		strikeGame = new Game(new Frame[]{new Frame(10, 0), new Frame(3, 6), 
-				new Frame(7, 2), new Frame(3, 6), new Frame(4, 4), 
-				new Frame(5, 3), new Frame(3, 3),
-				new Frame(4, 5), new Frame(10, 0), new Frame(10, 0)});
-		spareGame = new Game(new Frame[]{new Frame(9, 1), new Frame(3, 6), 
-				new Frame(7, 2), new Frame(3, 6), new Frame(4, 4), 
-				new Frame(5, 3), new Frame(3, 3),
-				new Frame(4, 5), new Frame(2, 8), new Frame(7, 3)});
-		gameStrikeAndSpare = new Game(new Frame[]{new Frame(10, 0), new Frame(4, 6), 
-				new Frame(7, 2), new Frame(3, 6), new Frame(4, 4), 
-				new Frame(5, 3), new Frame(3, 3),
-				new Frame(4, 5), new Frame(10, 8), new Frame(7, 3)});
-		gameConsecutiveStrikes = new Game(new Frame[]{new Frame(10, 0), new Frame(10, 0), 
-				new Frame(7, 2), new Frame(3, 6), new Frame(4, 4), 
-				new Frame(5, 3), new Frame(3, 3),
-				new Frame(4, 5), new Frame(10, 8), new Frame(10, 3)});
+		strikeGame = new Game(new int[][]{{10, 0}, {3, 6}, 
+				{7, 2}, {3, 6}, {4, 4}, 
+				{5, 3}, {3, 3},
+				{4, 5}, {10, 0}, {10, 0}});
+		spareGame = new Game(new int[][]{{9, 1}, {3, 6}, 
+				{7, 2}, {3, 6}, {4, 4}, 
+				{5, 3}, {3, 3},
+				{4, 5}, {2, 8}, {7, 3}});
+		gameStrikeAndSpare = new Game(new int[][]{{10, 0}, {4, 6}, 
+				{7, 2}, {3, 6}, {4, 4}, 
+				{5, 3}, {3, 3},
+				{4, 5}, {10, 8}, {7, 3}});
+		gameConsecutiveStrikes = new Game(new int[][]{{10, 0}, {10, 0}, 
+				{7, 2}, {3, 6}, {4, 4}, 
+				{5, 3}, {3, 3},
+				{4, 5}, {10, 8}, {10, 3}});
 	}
 	
 	/* 
