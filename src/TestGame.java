@@ -43,4 +43,14 @@ public class TestGame {
 						
 		assertTrue("Incorrect number of frames: " + tempFrames.size(), tempFrames.size() == 10);
 	}
+	
+	/* 
+	 * Check if computed score for a game is correct
+     */
+	@Test
+	public void testScoreOfGame() {
+		int gameScore = tenFramesGame.computeScore();
+						
+		assertTrue("Incorrect game score: " + gameScore, gameScore == 81);
+	}
 }
