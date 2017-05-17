@@ -100,4 +100,15 @@ public class TestFrame {
 		assertTrue("Score for spare is not correct: " + score, score == (14));
 	}
 	
+	/* 
+	 * Test computeScore with null as argument
+     */
+	@Test
+	public void testNullScore() {
+		int score = frameSpare.computeScore(null);
+		assertTrue("Score for spare is not correct: " + score, score == (10));
+		score = frameStrike.computeScore(null);
+		assertTrue("Score for strike is not correct: " + score, score == (10));
+	}
+	
 }
