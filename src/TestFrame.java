@@ -120,4 +120,13 @@ public class TestFrame {
 		assertTrue("Score for strike is not correct: " + score, score == (20));
 	}
 	
+	/* 
+	 * Test computeScore for a strike followed by another strike
+     */
+	@Test
+	public void testStrikeFollowedByStrikeScore() {
+		int score = frameStrike.computeScore(frameStrike);
+		assertTrue("Score for strike is not correct: " + score, score == (20));
+	}
+	
 }

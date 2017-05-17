@@ -13,6 +13,7 @@ public class TestGame {
 	protected Game strikeGame;
 	protected Game spareGame;
 	protected Game gameStrikeAndSpare;
+	protected Game gameConsecutiveStrikes;
 	
 	@Before 
 	public void setup() {
@@ -33,6 +34,10 @@ public class TestGame {
 				new Frame(7, 2), new Frame(3, 6), new Frame(4, 4), 
 				new Frame(5, 3), new Frame(3, 3),
 				new Frame(4, 5), new Frame(10, 8), new Frame(7, 3)});
+		gameConsecutiveStrikes = new Game(new Frame[]{new Frame(10, 0), new Frame(10, 0), 
+				new Frame(7, 2), new Frame(3, 6), new Frame(4, 4), 
+				new Frame(5, 3), new Frame(3, 3),
+				new Frame(4, 5), new Frame(10, 8), new Frame(10, 3)});
 	}
 	
 	/* 
@@ -99,5 +104,15 @@ public class TestGame {
 		int gameScore = gameStrikeAndSpare.computeScore();
 						
 		assertTrue("Incorrect game score: " + gameScore, gameScore == 116);
+	}
+	
+	/* 
+	 * Test scoring of game containing two consecutive strikes
+     */
+	@Test
+	public void testConsecutiveStrikesScoring() {
+		int gameScore = gameConsecutiveStrikes.computeScore();
+						
+		assertTrue("Incorrect game score: " + gameScore, gameScore == 125);
 	}
 }
