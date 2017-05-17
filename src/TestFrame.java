@@ -7,15 +7,17 @@ import org.junit.Assert;
 public class TestFrame {
 	protected Frame frameObject;
 	protected Frame frameZeroScore;
-	protected Frame frameTenScore;
+	protected Frame frameNinePoints;
 	protected Frame frameStrike;
+	protected Frame frameSpare;
 	
 	@Before 
 	public void setup() {
 		frameObject = new Frame();
 		frameZeroScore = new Frame(0, 0);
-		frameTenScore = new Frame(5, 5);
 		frameStrike = new Frame(10, 5);
+		frameNinePoints = new Frame(4, 5);
+		frameSpare = new Frame(2, 8);
 	}
 	
 	/* 
@@ -52,11 +54,11 @@ public class TestFrame {
 	
 	/* 
 	 * Test the computed score for one single frame
-	 * where both throws hit half of the pins
+	 * that equals nine points
      */
 	@Test
-	public void testComputeScoreHalfOfPins() {
-		assertTrue("Incorrect score computed: " + frameTenScore.computeScore(), frameTenScore.computeScore() == (10));
+	public void testComputeScoreNinePoints() {
+		assertTrue("Incorrect score computed: " + frameNinePoints.computeScore(), frameNinePoints.computeScore() == (9));
 	}
 	
 	/* 
@@ -73,8 +75,17 @@ public class TestFrame {
      */
 	@Test
 	public void testStrikeScore() {
-		int score = frameStrike.computeScore(frameTenScore.computeScore());
-		assertTrue("Score for strike is not correct: " + score, score == (20));
+		int score = frameStrike.computeScore(frameNinePoints.computeScore());
+		assertTrue("Score for strike is not correct: " + score, score == (19));
+	}
+	
+	/* 
+	 * Test that score is correctly computed for a spare
+     */
+	@Test
+	public void testSpareScore() {
+		int score = frameSpare.computeScore(frameNinePoints);
+		assertTrue("Score for spare is not correct: " + score, score == (14));
 	}
 	
 }
