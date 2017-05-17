@@ -42,7 +42,7 @@ public class TestFrame {
 	public void testComputeScore() {
 		int[] tempThrows = frameObject.getThrows();
 		
-		assertTrue("Incorrect score computed: " + frameObject.computeScore(), frameObject.computeScore() == (tempThrows[0] + tempThrows[1]));
+		assertTrue("Incorrect score computed: " + frameObject.computeScore(frameNinePoints), frameObject.computeScore(frameNinePoints) == (tempThrows[0] + tempThrows[1]));
 	}
 	
 	/* 
@@ -51,7 +51,7 @@ public class TestFrame {
      */
 	@Test
 	public void testComputeScoreZeroPins() {
-		assertTrue("Incorrect score computed: " + frameZeroScore.computeScore(), frameZeroScore.computeScore() == (0));
+		assertTrue("Incorrect score computed: " + frameZeroScore.computeScore(frameNinePoints), frameZeroScore.computeScore(frameNinePoints) == (0));
 	}
 	
 	/* 
@@ -60,7 +60,7 @@ public class TestFrame {
      */
 	@Test
 	public void testComputeScoreNinePoints() {
-		assertTrue("Incorrect score computed: " + frameNinePoints.computeScore(), frameNinePoints.computeScore() == (9));
+		assertTrue("Incorrect score computed: " + frameNinePoints.computeScore(frameNinePoints), frameNinePoints.computeScore(frameNinePoints) == (9));
 	}
 	
 	/* 

@@ -31,7 +31,7 @@ public class Game {
 			if((i+1) < frames.length) 
 				result += frames[i].computeScore(frames[i+1]);
 			else
-				result += frames[i].computeScore();
+				result += frames[i].computeScore(null);
 		}
 		
 		return result;

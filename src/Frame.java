@@ -29,14 +29,10 @@ public class Frame {
 		return new int[]{firstThrow, secondThrow};
 	}
 	
-	public int computeScore(){	
-		return firstThrow + secondThrow;
-	}
-	
 	public int computeScore(Frame subsequentFrame){
 		int result = firstThrow;
 		if(firstThrow == 10){
-			result += ((subsequentFrame != null) ? subsequentFrame.computeScore() : 0);
+			result += ((subsequentFrame != null) ? (subsequentFrame.getThrows()[0] + subsequentFrame.getThrows()[1]) : 0);
 		}
 		else{
 			result += secondThrow;
