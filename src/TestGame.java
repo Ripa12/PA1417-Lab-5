@@ -33,4 +33,14 @@ public class TestGame {
 		assertTrue("Incorrect number of frames: " + tempFrames.size(), tempFrames.size() == 10);
 		Assert.assertArrayEquals(frames, tempFrames.toArray());
 	}
+	
+	/* 
+	 * Check if random game contain 10 frames in total
+     */
+	@Test
+	public void testRandomGame() {
+		List<int[]> tempFrames = gameObject.getAllThrows();
+						
+		assertTrue("Incorrect number of frames: " + tempFrames.size(), tempFrames.size() == 10);
+	}
 }
