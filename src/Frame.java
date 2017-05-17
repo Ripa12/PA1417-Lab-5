@@ -10,12 +10,19 @@ public class Frame {
 		Random rand = new Random();
 
 	    firstThrow = rand.nextInt((MAXTHROW - MINTHROW) + 1) + MINTHROW;
-	    secondThrow = rand.nextInt((MAXTHROW - MINTHROW) + 1) + MINTHROW;
+	    
+	    if(firstThrow < 10)
+	    	secondThrow = rand.nextInt((MAXTHROW - MINTHROW) + 1) + MINTHROW;
+	    else
+	    	secondThrow = 0;
 	}
 	
 	Frame(int first, int second){
 		firstThrow = first;
-		secondThrow = second;
+		if(firstThrow < 10)
+			secondThrow = second;
+		else
+	    	secondThrow = 0;
 	}
 	
 	public int[] getThrows(){
