@@ -28,7 +28,10 @@ public class Game {
 		int result = 0;
 		
 		for(int i = 0; i < frames.length; i++){
-			result += frames[i].computeScore();
+			if((i+1) < frames.length) 
+				result += frames[i].computeScore(frames[i+1].computeScore());
+			else
+				result += frames[i].computeScore();
 		}
 		
 		return result;
