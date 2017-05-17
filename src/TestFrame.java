@@ -10,6 +10,7 @@ public class TestFrame {
 	protected Frame frameNinePoints;
 	protected Frame frameStrike;
 	protected Frame frameSpare;
+	protected Frame frameSecondSpare;
 	
 	@Before 
 	public void setup() {
@@ -18,6 +19,7 @@ public class TestFrame {
 		frameStrike = new Frame(10, 5);
 		frameNinePoints = new Frame(4, 5);
 		frameSpare = new Frame(2, 8);
+		frameSecondSpare = new Frame(0, 10);
 	}
 	
 	/* 
@@ -85,6 +87,16 @@ public class TestFrame {
 	@Test
 	public void testSpareScore() {
 		int score = frameSpare.computeScore(frameNinePoints);
+		assertTrue("Score for spare is not correct: " + score, score == (14));
+	}
+	
+	/* 
+	 * Test that score is correctly computed for a spare where
+	 * the first throw is a total miss
+     */
+	@Test
+	public void testSecondSpareScore() {
+		int score = frameSecondSpare.computeScore(frameNinePoints);
 		assertTrue("Score for spare is not correct: " + score, score == (14));
 	}
 	
