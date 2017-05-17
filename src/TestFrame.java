@@ -26,8 +26,8 @@ public class TestFrame {
 		
 		frameStrike = new Frame(10, 5, frameNinePoints);	
 		frameStrikeAndNull = new Frame(10, 5, null);
-		frameDoubleStrike = new Frame(10, 5, frameStrike);	
-		frameStrikeBeforeSpare = new Frame(10, 5, frameSpare);
+		frameDoubleStrike = new Frame(10, 5, new Frame(10, 0, frameNinePoints));	
+		frameStrikeBeforeSpare = new Frame(10, 5, new Frame(2, 8, null));
 		
 		frameSpare = new Frame(2, 8, frameNinePoints);
 		frameSpareAndNull = new Frame(2, 8, null);
@@ -138,7 +138,7 @@ public class TestFrame {
 	@Test
 	public void testStrikeFollowedByStrikeScore() {
 		int score = frameDoubleStrike.computeScore();
-		assertTrue("Score for strike is not correct: " + score, score == (20));
+		assertTrue("Score for strike is not correct: " + score, score == (24));
 	}
 	
 }
