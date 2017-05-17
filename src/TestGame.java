@@ -12,6 +12,7 @@ public class TestGame {
 	protected Game tenFramesGame;
 	protected Game strikeGame;
 	protected Game spareGame;
+	protected Game gameStrikeAndSpare;
 	
 	@Before 
 	public void setup() {
@@ -28,6 +29,10 @@ public class TestGame {
 				new Frame(7, 2), new Frame(3, 6), new Frame(4, 4), 
 				new Frame(5, 3), new Frame(3, 3),
 				new Frame(4, 5), new Frame(2, 8), new Frame(7, 3)});
+		gameStrikeAndSpare = new Game(new Frame[]{new Frame(10, 0), new Frame(4, 6), 
+				new Frame(7, 2), new Frame(3, 6), new Frame(4, 4), 
+				new Frame(5, 3), new Frame(3, 3),
+				new Frame(4, 5), new Frame(10, 8), new Frame(7, 3)});
 	}
 	
 	/* 
@@ -83,5 +88,16 @@ public class TestGame {
 		int gameScore = spareGame.computeScore();
 						
 		assertTrue("Incorrect game score: " + gameScore, gameScore == 98);
+	}
+	
+	/* 
+	 * Test scoring of game where the first frame and the next to last frame are strikes
+	 * and they are both followed by spares
+     */
+	@Test
+	public void testStrikesBeforeSparesScoring() {
+		int gameScore = gameStrikeAndSpare.computeScore();
+						
+		assertTrue("Incorrect game score: " + gameScore, gameScore == 116);
 	}
 }

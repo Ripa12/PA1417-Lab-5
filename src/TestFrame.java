@@ -111,4 +111,13 @@ public class TestFrame {
 		assertTrue("Score for strike is not correct: " + score, score == (10));
 	}
 	
+	/* 
+	 * Test computeScore for a strike followed by a spare
+     */
+	@Test
+	public void testStrikeBeforeSpareScore() {
+		int score = frameStrike.computeScore(frameSpare);
+		assertTrue("Score for strike is not correct: " + score, score == (20));
+	}
+	
 }
