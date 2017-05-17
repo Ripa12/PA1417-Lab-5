@@ -23,4 +23,14 @@ public class Game {
 		
 		return tempResult;
 	}
+	
+	public int computeScore(){
+		int result = 0;
+		
+		for(int i = 0; i < frames.length; i++){
+			result += frames[i].computeScore();
+		}
+		
+		return result;
+	}
 }
