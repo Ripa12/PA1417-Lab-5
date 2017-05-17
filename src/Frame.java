@@ -34,6 +34,16 @@ public class Frame {
 	}
 	
 	public int computeScore(Frame subsequentFrame){
-		return firstThrow + ((firstThrow == 10) ?  subsequentFrame.computeScore() : secondThrow);
+		int result = firstThrow;
+		if(firstThrow == 10){
+			result += subsequentFrame.computeScore();
+		}
+		else{
+			result += secondThrow;
+			if(result == 10){
+				result += subsequentFrame.getThrows()[0];
+			}
+		}
+		return result;
 	}
 }
