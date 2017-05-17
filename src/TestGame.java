@@ -14,6 +14,7 @@ public class TestGame {
 	protected Game spareGame;
 	protected Game gameStrikeAndSpare;
 	protected Game gameConsecutiveStrikes;
+	protected Game gameConsecutiveSpares;
 	
 	@Before 
 	public void setup() {
@@ -38,6 +39,8 @@ public class TestGame {
 				{7, 2}, {3, 6}, {4, 4}, 
 				{5, 3}, {3, 3},
 				{4, 5}, {10, 8}, {10, 3}});
+		gameConsecutiveSpares = new Game(new int[][]{{8, 2}, {5, 5}, {7, 2}, {3, 6}, 
+				{4, 4}, {5, 3}, {3, 3}, {4, 5}, {8, 1} ,{2, 6}});
 	}
 	
 	/* 
@@ -114,5 +117,15 @@ public class TestGame {
 		int gameScore = gameConsecutiveStrikes.computeScore();
 						
 		assertTrue("Incorrect game score: " + gameScore, gameScore == 125);
+	}
+	
+	/* 
+	 * Test scoring of game containing two consecutive spares
+     */
+	@Test
+	public void testConsecutiveSparesScoring() {
+		int gameScore = gameConsecutiveSpares.computeScore();
+						
+		assertTrue("Incorrect game score: " + gameScore, gameScore == 98);
 	}
 }
