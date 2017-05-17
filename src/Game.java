@@ -5,9 +5,9 @@ public class Game {
 	private Frame[] frames;
 	
 	Game(){
-		frames = new Frame[]{new Frame(0, 0), new Frame(0, 0), new Frame(0, 0),
-				new Frame(0, 0), new Frame(0, 0), new Frame(0, 0), new Frame(0, 0),
-				new Frame(0, 0), new Frame(0, 0), new Frame(0, 0)};
+		frames = new Frame[]{new Frame(), new Frame(), new Frame(),
+				new Frame(), new Frame(), new Frame(), new Frame(),
+				new Frame(), new Frame(), new Frame()};
 	}
 	
 	Game(Frame[] f){
@@ -15,7 +15,6 @@ public class Game {
 	}
 	
 	public List<int[]> getAllThrows(){
-		int[][] result = null;
 		List<int[]> tempResult = new ArrayList<int[]>();
 		
 		for(int i = 0; i < frames.length; i++){
