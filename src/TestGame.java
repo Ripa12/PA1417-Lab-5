@@ -8,14 +8,15 @@ import org.junit.Assert;
 
 
 public class TestGame {
-	protected Game gameObject;
-	protected Game tenFramesGame;
-	protected Game strikeGame;
-	protected Game spareGame;
-	protected Game gameStrikeAndSpare;
-	protected Game gameConsecutiveStrikes;
-	protected Game gameConsecutiveSpares;
-	protected Game gameSpareLast;
+	private Game gameObject;
+	private Game tenFramesGame;
+	private Game strikeGame;
+	private Game spareGame;
+	private Game gameStrikeAndSpare;
+	private Game gameConsecutiveStrikes;
+	private Game gameConsecutiveSpares;
+	private Game gameSpareLast;
+	private Game gameStrikeLast;
 	
 	@Before 
 	public void setup() {
@@ -44,6 +45,8 @@ public class TestGame {
 				{4, 4}, {5, 3}, {3, 3}, {4, 5}, {8, 1} ,{2, 6}});
 		gameSpareLast = new Game(new int[][]{{1, 5}, {3, 6}, {7, 2}, {3, 6}, {4, 4},
 				{5, 3}, {3, 3}, {4, 5}, {8, 1}, {2, 8, 7}});
+		gameStrikeLast = new Game(new int[][]{{1, 5}, {3, 6}, {7, 2}, {3, 6}, {4, 4},
+			{5, 3}, {3, 3}, {4, 5}, {8, 1}, {10, 0, 7, 2}});
 	}
 	
 	/* 
@@ -140,5 +143,15 @@ public class TestGame {
 		int gameScore = gameSpareLast.computeScore();
 						
 		assertTrue("Incorrect game score: " + gameScore, gameScore == (83 + 7));
+	}
+	
+	/* 
+	 * Test scoring of game where the last frame is a strike
+     */
+	@Test
+	public void testFinalFrameIsStrikeScoring() {
+		int gameScore = gameStrikeLast.computeScore();
+						
+		assertTrue("Incorrect game score: " + gameScore, gameScore == (83 + 7 + 2));
 	}
 }
