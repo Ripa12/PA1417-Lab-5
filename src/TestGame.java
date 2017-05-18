@@ -18,6 +18,7 @@ public class TestGame {
 	private Game gameSpareLast;
 	private Game gameStrikeLast;
 	private Game gameSpareLastStrikeBonus;
+	private Game gameBestScore;
 	
 	@Before 
 	public void setup() {
@@ -50,6 +51,8 @@ public class TestGame {
 			{5, 3}, {3, 3}, {4, 5}, {8, 1}, {10, 0, 7, 2}});
 		gameSpareLastStrikeBonus = new Game(new int[][]{{1, 5}, {3, 6}, {7, 2}, {3, 6}, {4, 4},
 			{5, 3}, {3, 3}, {4, 5}, {8, 1}, {2, 8, 10, 2}});
+		gameBestScore = new Game(new int[][]{{10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0},
+			{10, 0}, {10, 0}, {10, 10}, {10, 0}, {10, 0, 10, 10}}); 
 	}
 	
 	/* 
@@ -166,5 +169,15 @@ public class TestGame {
 		int gameScore = gameSpareLastStrikeBonus.computeScore();
 						
 		assertTrue("Incorrect game score: " + gameScore, gameScore == (83 + 10));
+	}
+	
+	/* 
+	 * Test scoring of game in which all frames are strikes, including bonus throw
+     */
+	@Test
+	public void testPerfectGameScoring() {
+		int gameScore = gameBestScore.computeScore();
+						
+		assertTrue("Incorrect game score: " + gameScore, gameScore == (280 + 10 + 10));
 	}
 }
