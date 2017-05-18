@@ -65,18 +65,6 @@ public class Frame {
 		return result;
 	}
 	
-	private int computeBonusThrow(){
-		int result = 0;
-		
-		if(nextFrame == null){
-			if((firstThrow + secondThrow) == 10){
-				result += firstBonusThrow;
-			}
-		}
-		
-		return result;
-	}
-	
 	public int computeScore(){
 		int result = firstThrow;
 		if(firstThrow == 10){
@@ -90,11 +78,9 @@ public class Frame {
 		else{
 			result += secondThrow;
 			if(result == 10){
-				result += ((nextFrame != null) ? nextFrame.getThrows()[0] : 0);
+				result += ((nextFrame != null) ? nextFrame.getThrows()[0] : firstBonusThrow);
 			}
 		}
-		
-		result += computeBonusThrow();
 		
 		return result;
 	}
