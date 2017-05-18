@@ -30,7 +30,7 @@ public class TestFrame {
 		frameStrikeBeforeSpare = new Frame(10, 5, new Frame(2, 8, null));
 		
 		frameSpare = new Frame(2, 8, frameNinePoints);
-		frameSpareAndNull = new Frame(2, 8, 7);
+		frameSpareAndNull = new Frame(2, 8, 7, 0);
 		frameSecondSpare = new Frame(0, 10, frameNinePoints);
 	}
 	
