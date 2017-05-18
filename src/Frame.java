@@ -5,12 +5,14 @@ public class Frame {
 	private int firstThrow;
 	private int secondThrow;
 	private int firstBonusThrow;
+	private int secondBonusThrow;
 	public static final int MINTHROW = 0;
 	public static final int MAXTHROW = 10;
 	
 	Frame(Frame next){
 		nextFrame = next;
 		firstBonusThrow = 0;
+		secondBonusThrow = 0;
 		
 		Random rand = new Random();
 
@@ -25,6 +27,7 @@ public class Frame {
 	Frame(int first, int second, Frame next){
 		nextFrame = next;
 		firstBonusThrow = 0;
+		secondBonusThrow = 0;
 		
 		firstThrow = first;
 		if(firstThrow < 10)
@@ -33,9 +36,10 @@ public class Frame {
 	    	secondThrow = 0;
 	}
 	
-	Frame(int first, int second, int firstBonus){
+	Frame(int first, int second, int firstBonus, int secondBonus){
 		nextFrame = null;
 		firstBonusThrow = firstBonus;
+		secondBonusThrow = secondBonus;
 		
 		firstThrow = first;
 		if(firstThrow < 10)
@@ -73,6 +77,9 @@ public class Frame {
 					result += computeConsecutiveStrikes(nextFrame);
 				else
 					result += (nextFrame.getThrows()[0] + nextFrame.getThrows()[1]);
+			}
+			else{
+				result += (firstBonusThrow + secondBonusThrow);
 			}
 		}
 		else{
