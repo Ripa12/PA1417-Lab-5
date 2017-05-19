@@ -48,10 +48,6 @@ public class Frame {
 	    	secondThrow = 0;
 	}
 	
-	public int[] getBonusThrows(){
-		return new int[]{firstBonusThrow, secondBonusThrow};
-	}
-	
 	public Frame next(){
 		return nextFrame;
 	}
@@ -60,18 +56,17 @@ public class Frame {
 		return new int[]{firstThrow, secondThrow};
 	}
 	
-	private int computeConsecutiveStrikes(Frame next, int seq){
+	private int computeConsecutiveStrikes(Frame next, int countdown){
 		int result = 0;
 		
 		if(next != null){
-			if((next.getThrows()[0] == 10) && (seq < 1)){
-				result += computeConsecutiveStrikes(next.next(), (seq + 1));
-				if(next.next() == null){
+			result = next.firstThrow;
+			if((result == 10) && (countdown > 0)){
+				if(next.nextFrame == null)
 					result += next.firstBonusThrow;
-				}
+				else
+					result += computeConsecutiveStrikes(next.nextFrame, (countdown - 1));
 			}
-			result += next.getThrows()[0];
-			
 		}
 		
 		return result;
@@ -81,10 +76,10 @@ public class Frame {
 		int result = firstThrow;
 		if(firstThrow == 10){
 			if(nextFrame != null){
-				if(nextFrame.getThrows()[0] == 10)
-					result += computeConsecutiveStrikes(nextFrame, 0);
+				if(nextFrame.firstThrow == 10)
+					result += computeConsecutiveStrikes(nextFrame, 1);
 				else
-					result += (nextFrame.getThrows()[0] + nextFrame.getThrows()[1]);
+					result += (nextFrame.firstThrow + nextFrame.secondThrow);
 			}
 			else{
 				result += (firstBonusThrow + secondBonusThrow);
@@ -93,7 +88,7 @@ public class Frame {
 		else{
 			result += secondThrow;
 			if(result == 10){
-				result += ((nextFrame != null) ? nextFrame.getThrows()[0] : firstBonusThrow);
+				result += ((nextFrame != null) ? nextFrame.firstThrow : firstBonusThrow);
 			}
 		}
 		
