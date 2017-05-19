@@ -3,14 +3,33 @@ import java.util.List;
 
 public class Game {
 	private Frame firstFrame; 
+	private Frame lastFrame;
 	
 	Game(){
-		firstFrame = new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(new Frame(null))))))))));
+		firstFrame = new Frame(null);
+		lastFrame = firstFrame;
+		for(int i = 1; i < (9); i++){
+			Frame newFrame = new Frame(null); 
+			lastFrame.setNext(newFrame); 
+			lastFrame = newFrame;
+		}
+		Frame newFrame = new Frame(null); 
+		lastFrame.setNext(newFrame); 
+		lastFrame = newFrame;
 	}
 	
 	Game(int[][] f){
-		// ToDo: Refactor this line
-		firstFrame = new Frame(f[0][0],f[0][1],new Frame(f[1][0],f[1][1],new Frame(f[2][0],f[2][1],new Frame(f[3][0],f[3][1],new Frame(f[4][0],f[4][1],new Frame(f[5][0],f[5][1],new Frame(f[6][0],f[6][1],new Frame(f[7][0],f[7][1],new Frame(f[8][0],f[8][1],new Frame(f[9][0],f[9][1],((f[9].length > 2) ? f[9][2] : 0), ((f[9].length > 3) ? f[9][3] : 0)))))))))));
+		firstFrame = new Frame(f[0][0],f[0][1], null);
+		lastFrame = firstFrame;
+		for(int i = 1; i < (f.length - 1); i++){
+			Frame newFrame = new Frame(f[i][0],f[i][1], null); 
+			lastFrame.setNext(newFrame); 
+			lastFrame = newFrame;
+		}
+		int end = (f.length-1);
+		Frame newFrame = new Frame(f[end][0],f[end][1], ((f[end].length > 2) ? f[end][2] : 0), ((f[end].length > 3) ? f[end][3] : 0)); 
+		lastFrame.setNext(newFrame); 
+		lastFrame = newFrame;
 	}
 	
 	public List<int[]> getAllThrows(){

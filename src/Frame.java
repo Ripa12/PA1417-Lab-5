@@ -48,6 +48,10 @@ public class Frame {
 	    	secondThrow = 0;
 	}
 	
+	public void setNext(Frame next){
+		nextFrame = next;
+	}
+	
 	public Frame next(){
 		return nextFrame;
 	}
