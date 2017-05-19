@@ -19,6 +19,7 @@ public class TestGame {
 	private Game gameStrikeLast;
 	private Game gameSpareLastStrikeBonus;
 	private Game gameBestScore;
+	private Game gameReal;
 	
 	@Before 
 	public void setup() {
@@ -53,6 +54,8 @@ public class TestGame {
 			{5, 3}, {3, 3}, {4, 5}, {8, 1}, {2, 8, 10, 2}});
 		gameBestScore = new Game(new int[][]{{10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0},
 			{10, 0}, {10, 0}, {10, 0}, {10, 0}, {10, 0, 10, 10}}); 
+		gameReal = new Game(new int[][]{{6, 3}, {7, 1}, {8, 2}, {7, 2}, {10, 0},
+				{6, 2}, {7, 3}, {10, 0}, {8,0}, {7, 3, 10, 0}}); 
 	}
 	
 	/* 
@@ -179,5 +182,15 @@ public class TestGame {
 		int gameScore = gameBestScore.computeScore();
 						
 		assertTrue("Incorrect game score: " + gameScore, gameScore == (280 + 10 + 10));
+	}
+	
+	/* 
+	 * Test scoring with an example of a real game
+     */
+	@Test
+	public void testRealGameScoring() {
+		int gameScore = gameReal.computeScore();
+						
+		assertTrue("Incorrect game score: " + gameScore, gameScore == (135));
 	}
 }
